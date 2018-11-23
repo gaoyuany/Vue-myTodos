@@ -8,11 +8,7 @@
 			todoName:'',
 			stu:null,
 			focusState:false,
-			list:[
-				{id:0,name:'gyyyyy',done:false},
-				{id:1,name:'wccccc',done:true},
-				{id:2,name:'grrrrr',done:false}
-			]
+			list:JSON.parse(localStorage.todos)
 		},
 		methods:{
 			addTodo(e){
@@ -22,17 +18,21 @@
 						name:this.todoName,
 						done:false
 					});
+					this.todoName='';
+				this.setlocal();
 					
 				}
 			},
 			delTodo(index){
 				console.log(index);
 				this.list.splice(index,1);
+				this.setlocal()
 				
 			},
 			update(index){
 				this.stu=index;
 				this.focusState=true;
+				this.setlocal()
 				
 			},
 			inpBlur(){
@@ -42,6 +42,10 @@
 				if(e.keyCode===13){
 					this.stu=null;
 				}
+			},
+			setlocal(){
+				let str=JSON.stringify(this.list)
+				localStorage.setItem('todos',str);
 			}
 		},
 		directives: {
