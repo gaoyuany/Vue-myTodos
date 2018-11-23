@@ -28,7 +28,7 @@
 							<label @dblclick="update(index)">{{item.name}}</label>
 							<button class="destroy" @click="delTodo(index)"></button>
 						</div>
-						<input class="edit" v-focus="focusState" v-model="item.name">
+						<input class="edit" @blur="inpBlur" @keyup="inpKeyUp" v-focus="focusState" v-model="item.name">
 					</li>
 				</ul>
 			</section>

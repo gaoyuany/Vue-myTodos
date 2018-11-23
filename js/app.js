@@ -34,6 +34,14 @@
 				this.stu=index;
 				this.focusState=true;
 				
+			},
+			inpBlur(){
+				this.stu=null;
+			},
+			inpKeyUp(e){
+				if(e.keyCode===13){
+					this.stu=null;
+				}
 			}
 		},
 		directives: {
