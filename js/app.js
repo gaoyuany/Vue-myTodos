@@ -8,7 +8,7 @@
 			todoName:'',
 			stu:null,
 			focusState:false,
-			list:JSON.parse(localStorage.todos)
+			list:[]
 		},
 		methods:{
 			addTodo(e){
@@ -55,6 +55,12 @@
 					el.focus()
 				}
 			}
+		},
+		mounted() {
+			if(!localStorage.getItem("todos")){
+				localStorage.setItem("todos",JSON.stringify([]));
+			}
+				this.list=JSON.parse(localStorage.getItem("todos"))
 		}
 	})
 
