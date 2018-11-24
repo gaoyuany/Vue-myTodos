@@ -46,6 +46,11 @@
 			setlocal(){
 				let str=JSON.stringify(this.list)
 				localStorage.setItem('todos',str);
+			},
+			clearList(){
+				this.list=[];
+				this.setlocal()
+
 			}
 		},
 		directives: {
@@ -61,6 +66,14 @@
 				localStorage.setItem("todos",JSON.stringify([]));
 			}
 				this.list=JSON.parse(localStorage.getItem("todos"))
+		},
+		computed:{
+			leftCount(){
+				return this.list.filter(item=>!item.done).length;
+			},
+			footerStatu(){
+				return this.list.length;
+			}
 		}
 	})
 

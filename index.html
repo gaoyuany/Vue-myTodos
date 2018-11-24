@@ -8,6 +8,14 @@
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 		<!-- CSS overrides - remove if you don't need it -->
 		<link rel="stylesheet" href="css/app.css">
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+			footer{
+				/* display: none; */
+			}
+		</style>
 	</head>
 	<body>
 		<section class="todoapp" id="app">
@@ -22,7 +30,7 @@
 				<ul class="todo-list">
 					<!-- These are here just to show the structure of the list items -->
 					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-					<li v-for="(item,index) in list" :class="[{completed:item.done},{editing:stu===index}]">
+					<li v-cloak v-for="(item,index) in list" :class="[{completed:item.done},{editing:stu===index}]">
 						<div class="view">
 							<input class="toggle" type="checkbox" checked v-model="item.done">
 							<label @dblclick="update(index)">{{item.name}}</label>
@@ -33,9 +41,9 @@
 				</ul>
 			</section>
 			<!-- This footer should hidden by default and shown when there are todos -->
-			<footer class="footer">
+			<footer  class="footer" v-show="list.length" style="display: none">
 				<!-- This should be `0 items left` by default -->
-				<span class="todo-count"><strong>0</strong> item left</span>
+				<span class="todo-count"><strong>{{leftCount}}</strong> item left</span>
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
@@ -49,7 +57,7 @@
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed">Clear completed</button>
+				<button class="clear-completed" @click="clearList">Clear completed</button>
 			</footer>
 		</section>
 		<footer class="info">
