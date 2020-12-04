@@ -1,6 +1,5 @@
 # TodoMVC App Template
 
-<span>1111</span>
 > Template used for creating [TodoMVC](http://todomvc.com) apps
 
 ![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
